@@ -2,6 +2,7 @@
 
 This project is based in [Ayke's famous LED earrings](https://github.com/aykevl/things/tree/master/earring-ring). The nametag has 18 individually addressable RGB LEDs and a big white area to write your name with a permanent marker.
 
+![Gif of the front face](nametag.fxs.gif)
 ![Photo of the front face](nametag-front.jpg)
 ![Photo of the back face](nametag-back.jpg)
 
@@ -15,13 +16,20 @@ In this directory you'll find:
 
 The PCB exposes a few pins:
 
-  - `+`, the plus side of the battery
+  - `VCC`, the plus side of the battery
   - `R`, the programming pin (originally "reset" but actually just the UPDI programming pin)
-  - `-`, the battery minus side
+  - `GND`, the battery minus side
 
 **Be careful** with connecting the `+`! Probably, don't do it at all unless you put in some resistor. The LEDs are connected without any resistors and expect some internal resistance from the button cell battery.
 
-You can make a programmer quite easily using a USB to UART converter and a 1kΩ resistor. You can find details on the [pymcuprog](https://pypi.org/project/pymcuprog/) project page (see "Serial port UPDI (pyupdi)").
+You can use a UPDI programmer like [Adafruit's UPDI friend](https://www.adafruit.com/product/5879) or make a programmer quite easily using a USB to UART (like the FT232H or CH340G) converter and a 1kΩ resistor. You can find details on the [pymcuprog](https://pypi.org/project/pymcuprog/) project page (see "Serial port UPDI (pyupdi)").
+
+Additionally, you should use a "pogo s clip" or "pogo pins programmer" (use those query on your favourite hardware website to find them) like the following so it's easier to programm the tags:
+
+![pogo pin stick](programmer.png)
+![pogo pin clip](clip.png)
+
+
 
 To program, insert a CR2032 coin cell battery and connect the `-` to the UART ground and `R` to the UPDI programming pin. Then run the following command:
 
